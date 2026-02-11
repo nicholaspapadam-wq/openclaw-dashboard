@@ -37,10 +37,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isOnDashboard = !nextUrl.pathname.startsWith("/login");
-      const isApiWebhook = nextUrl.pathname.startsWith("/api/webhook");
+      const isApiRoute = nextUrl.pathname.startsWith("/api/");
       
-      // Allow webhook API without auth (uses separate API key)
-      if (isApiWebhook) return true;
+      // Allow API routes (they handle their own auth via API key)
+      if (isApiRoute) return true;
       
       if (isOnDashboard) {
         if (isLoggedIn) return true;
