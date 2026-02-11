@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { logActivity, initDb } from "@/lib/db";
 
 // Webhook API key for security
-const WEBHOOK_API_KEY = process.env.WEBHOOK_API_KEY;
+const WEBHOOK_API_KEY = process.env.WEBHOOK_API_KEY?.trim();
 
 export async function POST(request: NextRequest) {
   // Verify API key

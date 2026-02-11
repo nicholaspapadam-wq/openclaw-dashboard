@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { saveCronSnapshot, getLatestCronSnapshot, initDb } from "@/lib/db";
 import { auth } from "@/auth";
 
-const WEBHOOK_API_KEY = process.env.WEBHOOK_API_KEY;
+const WEBHOOK_API_KEY = process.env.WEBHOOK_API_KEY?.trim();
 
 // GET - retrieve latest cron snapshot
 export async function GET() {
